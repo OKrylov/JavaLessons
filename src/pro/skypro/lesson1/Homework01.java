@@ -1,3 +1,5 @@
+package pro.skypro.lesson1;
+
 public class Homework01 {
 
 

@@ -1,4 +1,4 @@
-package pro.skypro.lesson1;
+package pro.skypro.course1.lesson1;
 
 public class Homework01 {
 

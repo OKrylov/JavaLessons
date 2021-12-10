@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pro.skypro.course2.spring.model.Employee;
 import pro.skypro.course2.spring.service.EmployeeService;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -32,6 +34,11 @@ public class EmployeeController {
     @GetMapping("/find")
     public Employee find(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.find(firstName, lastName);
+    }
+
+    @GetMapping("/all")
+    public Collection<Employee> all() {
+        return employeeService.getAll();
     }
 
     private String generateMessage(Employee employee, String status) {

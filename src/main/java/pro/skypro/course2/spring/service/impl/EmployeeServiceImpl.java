@@ -1,20 +1,22 @@
 package pro.skypro.course2.spring.service.impl;
 
 import org.springframework.stereotype.Service;
-import pro.skypro.course2.spring.exception.EmployeeBookOverflowException;
 import pro.skypro.course2.spring.exception.EmployeeExistsException;
 import pro.skypro.course2.spring.exception.EmployeeNotFoundException;
 import pro.skypro.course2.spring.model.Employee;
 import pro.skypro.course2.spring.service.EmployeeService;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final Employee[] employees;
-    private int size;
+    private final Set<Employee> employees;
 
     public EmployeeServiceImpl() {
-        employees = new Employee[10];
+        employees = new HashSet<>();
     }
 
     @Override
@@ -25,17 +27,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee add(Employee employee) {
-        if (size == employees.length) {
-            throw new EmployeeBookOverflowException();
-        }
-
-        int index = indexOf(employee);
-
-        if (index != -1) {
+        if (!employees.add(employee)) {
             throw new EmployeeExistsException();
         }
 
-        employees[size++] = employee;
         return employee;
     }
 
@@ -47,36 +42,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee remove(Employee employee) {
-        int index = indexOf(employee);
-
-        if (index != -1) {
-            Employee result = employees[index];
-            System.arraycopy(employees, index + 1, employees, index, size - index);
-            size--;
-            return result;
+        if (!employees.remove(employee)) {
+            throw new EmployeeNotFoundException();
         }
 
-        throw new EmployeeNotFoundException();
+        return employee;
     }
 
     @Override
     public Employee find(String firstName, String lastName) {
-        Employee newEmployee = new Employee(firstName, lastName);
-        int index = indexOf(newEmployee);
-
-        if (index != -1) {
-            return employees[index];
+        Employee employee = new Employee(firstName, lastName);
+        if (!employees.contains(employee)) {
+            throw new EmployeeNotFoundException();
         }
 
-        throw new EmployeeNotFoundException();
+        return employee;
     }
 
-    private int indexOf(Employee employee) {
-        for (int i = 0; i < size; i++) {
-            if (employees[i].equals(employee)) {
-                return i;
-            }
-        }
-        return -1;
+    @Override
+    public Collection<Employee> getAll() {
+        return Set.copyOf(employees);
     }
 }

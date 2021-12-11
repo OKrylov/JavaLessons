@@ -27,7 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee add(Employee employee) {
-        if (!employees.add(employee)) {
+        boolean employeeAlreadyExists = !employees.add(employee);
+        if (employeeAlreadyExists) {
             throw new EmployeeExistsException();
         }
 

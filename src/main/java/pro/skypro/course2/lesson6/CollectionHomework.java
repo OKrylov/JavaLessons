@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CollectionHomework {
 
-    private static final List<Integer> nums = Arrays.asList(1, 1, 2, 3, 4, 4, 5, 5, 6, 7);
+    private static final List<Integer> nums = Arrays.asList(1, 3, 1, 4, 4, 5, 2, 5, 6, 7);
     private static final List<String> words = Arrays.asList(
             "What", "is", "love?",
             "baby", "don't", "hurt", "me",
@@ -13,11 +13,11 @@ public class CollectionHomework {
     );
 
     public static void main(String[] args) {
-        task1();
+//        task1();
 //        task2();
 //        task3_1();
 //        task3_2();
-//        task4();
+        task4();
     }
 
     private static void task1() {
@@ -30,22 +30,27 @@ public class CollectionHomework {
     }
 
     private static void task2() {
-        List<Integer> uniqueList = new ArrayList<>(Set.copyOf(nums));
-        Collections.sort(uniqueList);
-        uniqueList.removeIf(num -> num % 2 != 0);
-        for (Integer num : uniqueList) {
-            System.out.print(num + " ");
+//        List<Integer> uniqueList = new ArrayList<>(Set.copyOf(nums));
+//        Collections.sort(uniqueList);
+//        uniqueList.removeIf(num -> num % 2 != 0);
+
+        TreeSet<Integer> uniqueValues = new TreeSet<>(Comparator.reverseOrder());
+        uniqueValues.addAll(nums);
+        for (Integer num : uniqueValues) {
+            if (num % 2 == 0) {
+                System.out.print(num + " ");
+            }
         }
         System.out.println();
     }
 
     private static void task3_1() {
-        Set<String> uniqueWords = new HashSet<>(words);
+        Set<String> uniqueWords = new LinkedHashSet<>(words);
         System.out.println(uniqueWords);
     }
 
     private static void task3_2() {
-        Set<String> uniqueWords = new HashSet<>(words);
+        Set<String> uniqueWords = new LinkedHashSet<>(words);
         List<String> duplicatedWords = new ArrayList<>(words);
         for (String uniqueWord : uniqueWords) {
             duplicatedWords.remove(uniqueWord);

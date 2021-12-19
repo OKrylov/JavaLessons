@@ -21,10 +21,16 @@ public class CalculatorController {
         return "<h1>Добро пожаловать в калькулятор.</h1>";
     }
 
-    @GetMapping("/plus")
-    public String sumNumbers(@RequestParam int num1, @RequestParam int num2) {
+    @GetMapping(value = "/plus", params = {"num11", "num22"})
+    public String sumNumbers(@RequestParam Integer num1, @RequestParam Integer num2) {
         int result = calculatorService.sum(num1, num2);
         return generateMessage(num1, num2, '+', result);
+    }
+
+    @GetMapping(value = "/plus", params = {"num1"})
+    public String sumNumbers(@RequestParam Integer num1) {
+        int result = calculatorService.sum(num1, 555);
+        return generateMessage(num1, 555, '+', result);
     }
 
     @GetMapping("/minus")

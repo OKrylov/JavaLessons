@@ -48,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException();
         }
 
-        return employee;
+        return deletedValue;
     }
 
     @Override

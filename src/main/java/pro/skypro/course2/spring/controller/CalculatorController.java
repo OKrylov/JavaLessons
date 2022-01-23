@@ -47,12 +47,12 @@ public class CalculatorController {
 
     @GetMapping("/divide")
     public String divideNumbers(@RequestParam int num1, @RequestParam int num2) {
-        if (num2 == 0) {
+        try {
+            int result = calculatorService.divide(num1, num2);
+            return generateMessage(num1, num2, '/', result);
+        } catch (IllegalArgumentException e) {
             return "<h1>Второй аргумент равен 0. Деление на 0 невозможно.</h1>";
         }
-
-        int result = calculatorService.divide(num1, num2);
-        return generateMessage(num1, num2, '/', result);
     }
 
     private String generateMessage(int num1, int num2, char action, int result) {

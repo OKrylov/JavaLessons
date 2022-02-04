@@ -9,4 +9,8 @@ public class InvalidExamGenerateException extends IllegalArgumentException {
     public InvalidExamGenerateException(int amount, int currentSize) {
         super(String.format("Failed to generate %d questions, the current size is %d", amount, currentSize));
     }
+
+    public InvalidExamGenerateException(String s) {
+        super(s);
+    }
 }

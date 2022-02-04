@@ -1,25 +1,17 @@
 package pro.skypro.course2.main.service.impl;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import pro.skypro.course2.main.exception.InvalidRequestException;
 import pro.skypro.course2.main.model.Question;
-import pro.skypro.course2.main.repository.impl.QuestionRepository;
 import pro.skypro.course2.main.service.QuestionService;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 @Service("mathService")
 public class MathQuestionService implements QuestionService {
 
-    private final QuestionRepository mathQuestionRepository;
     private final Random random = new Random();
-
-    public MathQuestionService(@Qualifier("mathRepository") QuestionRepository mathQuestionRepository) {
-        this.mathQuestionRepository = mathQuestionRepository;
-    }
 
     @Override
     public boolean add(String question, String answer) {
@@ -28,27 +20,41 @@ public class MathQuestionService implements QuestionService {
 
     @Override
     public boolean add(Question question) {
-        return mathQuestionRepository.add(question);
+        throw new InvalidRequestException();
     }
 
     @Override
     public boolean remove(String question, String answer) {
-        return mathQuestionRepository.remove(new Question(question, answer));
+        throw new InvalidRequestException();
     }
 
     @Override
     public Collection<Question> getAll() {
-        return Set.copyOf(mathQuestionRepository.getAll());
+        throw new InvalidRequestException();
     }
 
     @Override
     public Question getRandomQuestion() {
-        List<Question> questions = List.copyOf(mathQuestionRepository.getAll());
-        return questions.get(random.nextInt(questions.size()));
+        int num1 = random.nextInt(10) + 1;
+        int num2 = random.nextInt(10) + 1;
+        int mathSign = random.nextInt(4);
+
+        switch (mathSign) {
+            case 0:
+                return new Question(num1 + " + " + num2, String.valueOf(num1 + num2));
+            case 1:
+                return new Question(num1 + " - " + num2, String.valueOf(num1 - num2));
+            case 2:
+                return new Question(num1 + " * " + num2, String.valueOf(num1 * num2));
+            case 3:
+                return new Question(num1 + " / " + num2, String.valueOf(num1 / num2));
+            default:
+                throw new IllegalStateException("Invalid sign");
+        }
     }
 
     @Override
     public int getSize() {
-        return mathQuestionRepository.getAll().size();
+        throw new InvalidRequestException();
     }
 }

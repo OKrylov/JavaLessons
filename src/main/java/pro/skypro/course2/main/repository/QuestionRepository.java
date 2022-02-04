@@ -1,4 +1,4 @@
-package pro.skypro.course2.main.repository.impl;
+package pro.skypro.course2.main.repository;
 
 import pro.skypro.course2.main.model.Question;
 

@@ -3,7 +3,7 @@ package pro.skypro.course2.main.service.impl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pro.skypro.course2.main.model.Question;
-import pro.skypro.course2.main.repository.impl.QuestionRepository;
+import pro.skypro.course2.main.repository.QuestionRepository;
 import pro.skypro.course2.main.service.QuestionService;
 
 import java.util.*;

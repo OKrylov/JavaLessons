@@ -2,6 +2,7 @@ package pro.skypro.course2.main.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import pro.skypro.course2.main.model.Question;
+import pro.skypro.course2.main.repository.QuestionRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;

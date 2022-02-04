@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pro.skypro.course2.main.model.Question;
-import pro.skypro.course2.main.repository.impl.QuestionRepository;
+import pro.skypro.course2.main.repository.QuestionRepository;
 
 import java.util.List;
 import java.util.Random;

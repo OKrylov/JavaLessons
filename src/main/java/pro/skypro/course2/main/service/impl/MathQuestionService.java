@@ -6,16 +6,19 @@ import pro.skypro.course2.main.model.Question;
 import pro.skypro.course2.main.repository.impl.QuestionRepository;
 import pro.skypro.course2.main.service.QuestionService;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
-@Service("javaService")
-public class JavaQuestionService implements QuestionService {
+@Service("mathService")
+public class MathQuestionService implements QuestionService {
 
-    private final QuestionRepository javaQuestionRepository;
-    private Random random = new Random();
+    private final QuestionRepository mathQuestionRepository;
+    private final Random random = new Random();
 
-    public JavaQuestionService(@Qualifier("javaRepository") QuestionRepository javaQuestionRepository) {
-        this.javaQuestionRepository = javaQuestionRepository;
+    public MathQuestionService(@Qualifier("mathRepository") QuestionRepository mathQuestionRepository) {
+        this.mathQuestionRepository = mathQuestionRepository;
     }
 
     @Override
@@ -25,32 +28,27 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public boolean add(Question question) {
-        return javaQuestionRepository.add(question);
+        return mathQuestionRepository.add(question);
     }
 
     @Override
     public boolean remove(String question, String answer) {
-        return javaQuestionRepository.remove(new Question(question, answer));
+        return mathQuestionRepository.remove(new Question(question, answer));
     }
 
     @Override
     public Collection<Question> getAll() {
-        return Set.copyOf(javaQuestionRepository.getAll());
+        return Set.copyOf(mathQuestionRepository.getAll());
     }
 
     @Override
     public Question getRandomQuestion() {
-        List<Question> questions = List.copyOf(javaQuestionRepository.getAll());
+        List<Question> questions = List.copyOf(mathQuestionRepository.getAll());
         return questions.get(random.nextInt(questions.size()));
     }
 
-
     @Override
     public int getSize() {
-        return javaQuestionRepository.getAll().size();
-    }
-
-    public void setRandom(Random random) {
-        this.random = random;
+        return mathQuestionRepository.getAll().size();
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pro.skypro.course3.ru.hogwarts.school.model.Faculty;
 import pro.skypro.course3.ru.hogwarts.school.service.FacultyService;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/faculty")
 public class FacultyController {
@@ -52,6 +54,11 @@ public class FacultyController {
         } else {
             return ResponseEntity.ok(deletedFaculty);
         }
+    }
+
+    @GetMapping
+    public Set<Faculty> getByColor(@RequestParam String color) {
+        return facultyService.filterByColor(color);
     }
 
 

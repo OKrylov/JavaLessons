@@ -1,14 +1,11 @@
 package pro.skypro.course3.ru.hogwarts.school.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class AbstractCrudService<T> implements CrudService<T> {
 
-    private final Map<Long, T> storage = new HashMap<>();
+    protected final Map<Long, T> storage = new HashMap<>();
     private long currentId = 0L;
 
     @Override

@@ -7,6 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pro.skypro.course3.ru.hogwarts.school.model.Student;
 import pro.skypro.course3.ru.hogwarts.school.service.StudentService;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -52,6 +54,11 @@ public class StudentController {
         } else {
             return ResponseEntity.ok(deletedStudent);
         }
+    }
+
+    @GetMapping(params = {"age"})
+    public Set<Student> getByAge(@RequestParam Integer age) {
+        return studentService.filterByAge(age);
     }
 
 

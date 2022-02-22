@@ -2,11 +2,11 @@ package pro.skypro.course3.ru.hogwarts.school.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class AbstractJpaService<T> implements CrudService<T> {
+public abstract class AbstractJpaService<T, JR extends JpaRepository<T, Long>> implements CrudService<T> {
 
-    private final JpaRepository<T, Long> repository;
+    protected final JR repository;
 
-    protected AbstractJpaService(JpaRepository<T, Long> repository) {
+    protected AbstractJpaService(JR repository) {
         this.repository = repository;
     }
 

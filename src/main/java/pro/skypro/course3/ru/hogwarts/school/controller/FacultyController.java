@@ -7,6 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pro.skypro.course3.ru.hogwarts.school.model.Faculty;
 import pro.skypro.course3.ru.hogwarts.school.service.FacultyService;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/faculty")
 public class FacultyController {
@@ -24,6 +26,11 @@ public class FacultyController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return faculty;
+    }
+
+    @GetMapping(params = "{color}")
+    public Set<Faculty> findFacultiesByColor(@RequestParam String color) {
+        return facultyService.findByColor(color);
     }
 
     @PostMapping

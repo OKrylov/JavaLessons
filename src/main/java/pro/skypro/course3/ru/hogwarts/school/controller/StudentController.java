@@ -7,6 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pro.skypro.course3.ru.hogwarts.school.model.Student;
 import pro.skypro.course3.ru.hogwarts.school.service.StudentService;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -24,6 +26,11 @@ public class StudentController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return student;
+    }
+
+    @GetMapping(params = "{age}")
+    public Set<Student> findStudentsByAge(@RequestParam Integer age) {
+        return studentService.findByAge(age);
     }
 
     @PostMapping

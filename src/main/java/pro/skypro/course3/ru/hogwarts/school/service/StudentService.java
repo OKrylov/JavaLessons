@@ -5,9 +5,10 @@ import pro.skypro.course3.ru.hogwarts.school.model.Student;
 import pro.skypro.course3.ru.hogwarts.school.repository.StudentRepository;
 
 import javax.annotation.PostConstruct;
+import java.util.Set;
 
 @Service
-public class StudentService extends AbstractJpaService<Student> {
+public class StudentService extends AbstractJpaService<Student, StudentRepository> {
 
     protected StudentService(StudentRepository repository) {
         super(repository);
@@ -23,6 +24,10 @@ public class StudentService extends AbstractJpaService<Student> {
     @Override
     protected Long getId(Student student) {
         return student.getId();
+    }
+
+    public Set<Student> findByAge(Integer age) {
+        return repository.findByAge(age);
     }
 
 }

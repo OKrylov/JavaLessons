@@ -14,14 +14,6 @@ public class FacultyService extends AbstractJpaService<Faculty, FacultyRepositor
         super(repository);
     }
 
-    @PostConstruct
-    public void init() {
-        create(new Faculty("Gryffindor", "Red"));
-        create(new Faculty("Slytherin", "Green"));
-        create(new Faculty("Hufflepuff", "Red"));
-        create(new Faculty("Ravenclaw", "Yellow"));
-    }
-
     @Override
     protected Long getId(Faculty faculty) {
         return faculty.getId();
@@ -31,4 +23,7 @@ public class FacultyService extends AbstractJpaService<Faculty, FacultyRepositor
         return repository.findByColor(color);
     }
 
+    public Set<Faculty> findByColorOrNameIgnoreCase(String color, String name) {
+        return repository.findByColorOrNameIgnoreCase(color, name);
+    }
 }

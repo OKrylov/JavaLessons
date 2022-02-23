@@ -1,8 +1,9 @@
-package pro.skypro.course3.ru.hogwarts.school.service;
+package pro.skypro.course3.ru.hogwarts.school.service.impl;
 
 import org.springframework.stereotype.Service;
 import pro.skypro.course3.ru.hogwarts.school.model.Faculty;
 import pro.skypro.course3.ru.hogwarts.school.repository.FacultyRepository;
+import pro.skypro.course3.ru.hogwarts.school.service.AbstractJpaService;
 
 import javax.annotation.PostConstruct;
 import java.util.Set;

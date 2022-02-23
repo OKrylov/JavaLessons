@@ -11,20 +11,15 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="fileset" name="QuestionGeneratorApp" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/pro/skypro/course2/main/QuestionGeneratorApp.java</file>
-        </fileset>
-        <fileset id="fileset" name="HogwartsApp" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/pro/skypro/course3/ru/hogwarts/school/HogwartsApp.java</file>
-        </fileset>
-      </configuration>
+      <configuration />
     </facet>
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" value="3d444fc4-38cf-480e-b4ff-de7deb384760" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>

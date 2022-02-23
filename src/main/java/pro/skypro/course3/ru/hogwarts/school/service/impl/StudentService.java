@@ -1,10 +1,11 @@
-package pro.skypro.course3.ru.hogwarts.school.service;
+package pro.skypro.course3.ru.hogwarts.school.service.impl;
 
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import pro.skypro.course3.ru.hogwarts.school.model.Faculty;
 import pro.skypro.course3.ru.hogwarts.school.model.Student;
 import pro.skypro.course3.ru.hogwarts.school.repository.StudentRepository;
+import pro.skypro.course3.ru.hogwarts.school.service.AbstractJpaService;
 
 import javax.annotation.PostConstruct;
 import java.beans.beancontext.BeanContext;

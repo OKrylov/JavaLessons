@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pro.skypro.course3.ru.hogwarts.school.model.Student;
-import pro.skypro.course3.ru.hogwarts.school.service.StudentService;
+import pro.skypro.course3.ru.hogwarts.school.service.impl.StudentService;
 
 import java.util.Set;
 

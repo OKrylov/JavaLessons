@@ -43,7 +43,7 @@ public class AvatarController {
         Avatar avatar = avatarService.findAvatar(id);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(avatar.getMediaType()));
-        headers.setContentLength(avatar.getData().length);
+        headers.setContentLength(avatar.getFileSize());
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(avatar.getData());
     }
 
@@ -52,7 +52,7 @@ public class AvatarController {
         Avatar avatar = avatarService.findAvatar(id);
         Path path = Path.of(avatar.getFilePath());
         try (InputStream is = Files.newInputStream(path);
-             OutputStream os = response.getOutputStream();) {
+             OutputStream os = response.getOutputStream()) {
             response.setStatus(200);
             response.setContentType(avatar.getMediaType());
             response.setContentLength((int) avatar.getFileSize());

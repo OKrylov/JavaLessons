@@ -61,7 +61,7 @@ public class AvatarServiceImpl implements AvatarService {
     private void saveImageToFile(MultipartFile avatarFile, Path filePath) throws IOException {
         try (
                 BufferedInputStream bis = new BufferedInputStream(avatarFile.getInputStream(), IMAGE_BLOCK_BUFFER_SIZE);
-                BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(filePath, StandardOpenOption.CREATE_NEW), IMAGE_BLOCK_BUFFER_SIZE);
+                BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(filePath, StandardOpenOption.CREATE_NEW), IMAGE_BLOCK_BUFFER_SIZE)
         ) {
             bis.transferTo(bos);
         }
@@ -76,7 +76,7 @@ public class AvatarServiceImpl implements AvatarService {
     }
 
     private Avatar findOrCreateAvatar(Long id) {
-        return repository.findById(id).orElse(new Avatar());
+        return repository.findByStudentId(id).orElse(new Avatar());
     }
 
     private String getExtensions(String fileName) {

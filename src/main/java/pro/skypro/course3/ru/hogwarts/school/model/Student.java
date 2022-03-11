@@ -20,6 +20,10 @@ public class Student {
     public Student() {
     }
 
+    public Student(String name, int age) {
+        this(name, age, null);
+    }
+
     public Student(String name, int age, Faculty faculty) {
         this(null, name, age, faculty);
     }

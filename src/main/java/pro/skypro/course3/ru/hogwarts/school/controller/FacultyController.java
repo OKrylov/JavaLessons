@@ -28,15 +28,14 @@ public class FacultyController {
         return faculty;
     }
 
-    @GetMapping(params = {"color"})
-    public Set<Faculty> findFacultiesByColor(@RequestParam(required = false) String color) {
-        return facultyService.findByColor(color);
-    }
-
-    @GetMapping(params = {"name"})
+    @GetMapping
     public Set<Faculty> findFacultiesByColorOrNameIgnoreCase(
             @RequestParam(required = false) String color,
             @RequestParam(required = false) String name) {
+        if (name == null) {
+            return facultyService.findByColor(color);
+        }
+
         return facultyService.findByColorOrNameIgnoreCase(color, name);
     }
 

@@ -2,13 +2,11 @@ package pro.skypro.course3.ru.hogwarts.school.service.impl;
 
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
-import pro.skypro.course3.ru.hogwarts.school.model.Faculty;
 import pro.skypro.course3.ru.hogwarts.school.model.Student;
 import pro.skypro.course3.ru.hogwarts.school.repository.StudentRepository;
 import pro.skypro.course3.ru.hogwarts.school.service.AbstractJpaService;
 
-import javax.annotation.PostConstruct;
-import java.beans.beancontext.BeanContext;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -30,5 +28,17 @@ public class StudentService extends AbstractJpaService<Student, StudentRepositor
 
     public Set<Student> findByAgeBetween(Integer minAge, Integer maxAge) {
         return repository.findByAgeBetween(minAge, maxAge);
+    }
+
+    public int getStudentsCount() {
+        return repository.getStudentsCount();
+    }
+
+    public int getStudentAverageAge() {
+        return repository.getStudentAverageAge();
+    }
+
+    public List<Student> getLastStudents(int count) {
+        return repository.getLastStudents(count);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pro.skypro.course3.ru.hogwarts.school.model.Student;
 import pro.skypro.course3.ru.hogwarts.school.service.impl.StudentService;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -66,6 +67,21 @@ public class StudentController {
         } else {
             return ResponseEntity.ok(deletedStudent);
         }
+    }
+
+    @GetMapping("/count")
+    public int getStudentsCount() {
+        return studentService.getStudentsCount();
+    }
+
+    @GetMapping("/averageAge")
+    public int getStudentAverageAge() {
+        return studentService.getStudentAverageAge();
+    }
+
+    @GetMapping("/last/{count}")
+    public List<Student> getLastStudents(@PathVariable int count) {
+        return studentService.getLastStudents(count);
     }
 
 

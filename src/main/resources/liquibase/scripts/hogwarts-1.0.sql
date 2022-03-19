@@ -1,6 +1,6 @@
---  liquibase formatted sql
+-- liquibase formatted sql
 
---  changeset okrylov:1
+-- changeset okrylov:1
 create index student_name_idx on student (name);
 
 -- changeset okrylov:2

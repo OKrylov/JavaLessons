@@ -11,7 +11,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int age;
+
+    private Integer age = 20;
 
     @ManyToOne
     @JoinColumn(name = "faculty_id")
@@ -51,7 +52,7 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 

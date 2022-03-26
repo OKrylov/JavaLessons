@@ -1,5 +1,7 @@
 package pro.skypro.course3.ru.hogwarts.school.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ import java.util.List;
 @Service
 public class AvatarServiceImpl implements AvatarService {
 
+    private static final Logger log = LoggerFactory.getLogger(AvatarServiceImpl.class);
+
     public static final int IMAGE_BLOCK_BUFFER_SIZE = 1024;
 
     @Value("${path.to.avatars.folder}")
@@ -35,9 +39,12 @@ public class AvatarServiceImpl implements AvatarService {
 
     @Override
     public Long uploadAvatar(Long studentId, MultipartFile avatarFile) throws IOException {
+        log.info("Was invoked method to upload avatar for student: {}", studentId);
         Student student = studentService.find(studentId);
         if (student == null) {
-            throw new IllegalArgumentException("Student with id does not exist: " + studentId);
+            String errMsg = "Student with id does not exist: " + studentId;
+            log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
         }
 
         Path filePath = createImageFilePath(avatarFile, student);
@@ -50,11 +57,13 @@ public class AvatarServiceImpl implements AvatarService {
 
     @Override
     public Avatar findAvatar(Long id) {
+        log.info("Was invoked method to find by id: {}", id);
         return repository.getById(id);
     }
 
     @Override
     public List<Avatar> getAvatarPage(int page, int size) {
+        log.info("Was invoked method to get avatars page {} of size {}", page, size);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
         return repository.findAll(pageRequest).toList();
     }

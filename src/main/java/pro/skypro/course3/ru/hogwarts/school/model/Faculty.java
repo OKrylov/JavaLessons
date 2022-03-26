@@ -1,8 +1,11 @@
 package pro.skypro.course3.ru.hogwarts.school.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,9 +18,9 @@ public class Faculty {
     private String name;
     private String color;
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "faculty")
-    private Set<Student> students;
+    private List<Student> students;
 
     public Faculty() {
     }
@@ -56,11 +59,11 @@ public class Faculty {
         this.color = color;
     }
 
-    public Set<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<Student> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 

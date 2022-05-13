@@ -13,7 +13,7 @@ jobs:
     - name: Create PR to branch
       uses: gorillio/github-action-cherry-pick@master
       with:
-        pr_branch: test_1
+        pr_branch: develop_test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITBOT_EMAIL: krylov92oa@gmail.com
